@@ -36,7 +36,7 @@ jobs:
       - name: generate report allure
         run: allure generate reports --clean -o allure-report
       - name: Artifact Allure report
-        uses: actions/download-artifact@v6
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report
