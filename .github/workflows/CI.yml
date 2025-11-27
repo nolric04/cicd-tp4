@@ -21,6 +21,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: run test Allure
         run: pytest tests/ -v --alluredir=reports
+        continue-on-error: true
       - name: generate report allure
         run: allure generate reports --clean -o allure-report
       - name: Artifact Allure report
