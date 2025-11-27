@@ -38,11 +38,8 @@ jobs:
       - name: Artifact Allure report
         uses: actions/download-artifact@v6
         with:
+          name: allure-report
           path: allure-report
-      - name: Artifact Allure report
-        uses: actions/download-artifact@v6
-        with:
-          path: allure-results
   testing-prometheus:
     name: Testing & reporting Prometheus
     runs-on: ubuntu-latest
