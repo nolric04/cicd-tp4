@@ -6,9 +6,8 @@ on:
   pull_request:
 jobs:
   testing-allure:
-    name: Testing & reporting
+    name: Testing & reporting Allure
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     steps:
       - name: checkoutRepository
@@ -33,9 +32,8 @@ jobs:
         with:
           path: allure-results
   testing-prometheus:
-    name: Testing & reporting
+    name: Testing & reporting Prometheus
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - name: checkoutRepository
         uses: actions/checkout@v3
