@@ -19,6 +19,17 @@ jobs:
           cache: 'pip'
       - name: Installation packages
         run: pip install -r requirements.txt
+      - name: Install Allure commandline
+        run: |
+         sudo apt update
+         sudo apt install -y default-jre
+         wget https://github.com/allure-framework/allure2/releases/download/2.26.0/allure-2.26.0.tgz
+         tar -xzf allure-2.26.0.tgz
+         sudo mv allure-2.26.0 /opt/allure
+         sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+        
+        
+
       - name: run test Allure
         run: pytest tests/ -v --alluredir=reports
         continue-on-error: true
