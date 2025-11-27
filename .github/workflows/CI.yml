@@ -1,0 +1,48 @@
+name: CI - tp4
+on:
+  push:
+    branches:
+      - Tavernier
+  pull_request:
+jobs:
+  testing-allure:
+    name: Testing & reporting
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - name: checkoutRepository
+        uses: actions/checkout@v3
+      - name: Installation python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+          cache: 'pip'
+      - name: Installation packages
+        run: pip install -r requirements.txt
+      - name: run test Allure
+        run: pytest tests/ -v --alluredir=reports
+      - name: generate report allure
+        run: allure generate reports --clean -o allure-report
+      - name: Artifact Allure report
+        uses: actions/download-artifact@v6
+        with:
+          path: allure-report
+      - name: Artifact Allure report
+        uses: actions/download-artifact@v6
+        with:
+          path: allure-results
+  testing-prometheus:
+    name: Testing & reporting
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: checkoutRepository
+        uses: actions/checkout@v3
+      - name: Installation python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+          cache: 'pip'
+      - name: Installation packages
+        run: pip install -r requirements.txt
